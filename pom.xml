@@ -27,13 +27,6 @@
 
 	<dependencies>
 
-		<!-- General -->
-		<dependency>
-			<groupId>com.github.javafaker</groupId>
-			<artifactId>javafaker</artifactId>
-			<version>${javafaker.version}</version>
-		</dependency>
-
 		<!-- JXLS -->
 		<dependency>
 			<groupId>org.jxls</groupId>

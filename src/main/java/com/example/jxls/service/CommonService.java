@@ -20,31 +20,12 @@ public class CommonService {
 	public CommonService() {
 		dao = new CommonDao();
 	}
-	
-	private void createCommonClientReport(String templateName, String outputName) throws FileNotFoundException {
-		Report report = new Report();
-		
-		OutputStream outStream = new FileOutputStream(outputName);
-		
-		Map<String, Object> data = new HashMap<>();
-		data.put("createdAt", "2021-01-01");
-		data.put("clients", dao.getAllClients());
-		
-		report.createDocument(outStream, templateName, data);
-	}
-	
-	public void createClientReport() throws FileNotFoundException {
-		createCommonClientReport("clientsTemplate", "target/clients.xls");
-	}
-	
-	public void createClientReportWithConditions() throws FileNotFoundException {
-		createCommonClientReport("clientsMarkInactiveTemplate", "target/clientsMarkInactive.xls");
-	}
 
 	public void createTemPlateReceiept() 	throws FileNotFoundException {
 		String template = "template_receiept";
 		Report report = new Report();
 
+		// test data
 		Map<String, Object> data = new HashMap<>();
 		data.put("now", LocalDateTime.now());
 		data.put("accountName", "THT Company");
@@ -58,18 +39,7 @@ public class CommonService {
 		data.put("accountName", "THT Company");
 		data.put("accountName", "THT Company");
 
-		List<InvoiceItem> invoiceItems =  new ArrayList<>();
-
-		InvoiceItem invoiceItem1 = new InvoiceItem("BL001", "APartment1", "football", "2023-01", "20000");
-		InvoiceItem invoiceItem2 = new InvoiceItem("BL002", "APartment2", "BBQ", "2023-01", "10000");
-		InvoiceItem invoiceItem3 = new InvoiceItem("BL003", "APartment2", "BBQ", "2023-01", "10000");
-		InvoiceItem invoiceItem4 = new InvoiceItem("BL004", "APartment2", "BBQ", "2023-01", "10000");
-		invoiceItems.add(invoiceItem1);
-		invoiceItems.add(invoiceItem2);
-		invoiceItems.add(invoiceItem3);
-		invoiceItems.add(invoiceItem4);
-
-		data.put("invoiceItems", invoiceItems);
+		data.put("invoiceItems", dao.getListInvoiceItem());
 
 		OutputStream outStream = new FileOutputStream("target/receipt.xlsx");
 		report.createDocument(outStream, template, data);

@@ -9,10 +9,7 @@ public class Application {
 	public static void main(String[] args) throws FileNotFoundException {
 		CommonService service = new CommonService();
 		
-		service.createClientReport();
 		service.createTemPlateReceiept();
-//
-//		service.createClientReportWithConditions();
 	}
 
 }
